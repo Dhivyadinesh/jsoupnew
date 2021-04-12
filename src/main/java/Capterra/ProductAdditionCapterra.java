@@ -31,8 +31,8 @@ public class ProductAdditionCapterra {
 				String sql;
 				// query for inserting data
 				sql = "INSERT INTO 	productaddcapterra (productsite,ProductName,ProductLogoUrl,"
-						+ "MainCategory,PricingModels,deploymentdata,supportdata)" + " VALUES (?,?,?,?,?,"
-						+ "?,?) ";
+						+ "MainCategory,PricingModels,deploymentdata,supportdata)" 
+						+ " VALUES (?,?,?,?,?,?,?) ";
 				PreparedStatement statement = conn.prepareStatement(sql);
 				productsite = scan.nextLine();
 				Document doc = Jsoup.connect(productsite).get();
