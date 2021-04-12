@@ -30,7 +30,7 @@ public class ProductAdditionCapterra {
 				Connection conn = DriverManager.getConnection(url, username, password);
 				String sql;
 				// query for inserting data
-				sql = "INSERT INTO productaddcapterra (productsite,ProductName,ProductLogoUrl,"
+				sql = "INSERT INTO 	productaddcapterra (productsite,ProductName,ProductLogoUrl,"
 						+ "MainCategory,PricingModels,deploymentdata,supportdata)" + " VALUES (?,?,?,?,?,"
 						+ "?,?) ";
 				PreparedStatement statement = conn.prepareStatement(sql);
@@ -71,8 +71,8 @@ public class ProductAdditionCapterra {
 					Elements Pricingmain = doc.select(
 							"#LoadableProductPricingSection > div > div > div > div > div.StyledComponents__BlockLeft-wzvnxk-10.dJytYn > div.StyledComponents__BlockChecklist-wzvnxk-12.beXFFr > ul > li:nth-child(n) > div > span");
 					for (Element Pricingsub : Pricingmain) {
-						Elements data = Pricingsub.getElementsByClass("ListItem__Text-sc-1ejeqo-1 fAHCTA");
-						String Pricing = data.text();
+						Elements Pricingdata = Pricingsub.getElementsByClass("ListItem__Text-sc-1ejeqo-1 fAHCTA");
+						String Pricing = Pricingdata.text();
 						String Removeword = "Yes, has ";
 						String PricingModels = Pricing.replaceAll(Removeword, "");
 						statement.setString(5, PricingModels);
@@ -86,8 +86,8 @@ public class ProductAdditionCapterra {
 					Elements deploymentmain = doc.select(
 							"#LoadableProductSummary > div > div.DeploymentSupportSection__Root-z7uxeo-0.dolXgi > div > div:nth-child(1) > ul > li:nth-child(n) > div>span");
 					for (Element deploymentsub : deploymentmain) {
-						Elements data = deploymentsub.getElementsByClass("ListItem__Text-sc-1ejeqo-1 fAHCTA");
-						String deploymentdata = data.text();
+						Elements deployment = deploymentsub.getElementsByClass("ListItem__Text-sc-1ejeqo-1 fAHCTA");
+						String deploymentdata = deployment.text();
 						statement.setString(6, deploymentdata);
 					}
 				} catch (Exception e) {
@@ -95,11 +95,12 @@ public class ProductAdditionCapterra {
 
 				}
 				try {
+				
 					Elements supportmain = doc.select(
 							"#LoadableProductSummary > div > div.DeploymentSupportSection__Root-z7uxeo-0.dolXgi > div > div:nth-child(2) > ul > li:nth-child(n) > div > span");
 					for (Element supportsub : supportmain) {
-						Elements data = supportsub.getElementsByClass("ListItem__Text-sc-1ejeqo-1 fAHCTA");
-						String supportdata = data.text();
+						Elements support = supportsub.getElementsByClass("ListItem__Text-sc-1ejeqo-1 fAHCTA");
+						String supportdata = support.text();
 						statement.setString(7, supportdata);
 					}
 				} catch (Exception e) {
